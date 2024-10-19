@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-dataset_dir = "dataset"
+dataset_dir = "../../dataset"
 
 # TODO: Part 1
 def find_top_k_similar_images_by_text(description, k=3):
@@ -212,8 +212,8 @@ def edit_image( original_image_path, mask_image_path, description):
 if __name__ == "__main__":
 
     # Part 1: Find top k similar images by text
-    top_k_images = find_top_k_similar_images_by_text("a cat reading a book", k=1)
-    print(top_k_images)
+    # top_k_images = find_top_k_similar_images_by_text("a cat reading a book", k=1)
+    # print(top_k_images)
 
     # Part 2: Classify animal
 
@@ -222,8 +222,8 @@ if __name__ == "__main__":
     # print(animal_label)
 
     # Part 3: Detect object (demo)
-    # image_path = "original_image.png"
-    # detected_object = detect_object(image_path, "horse")
-    # if detected_object:
-    #     draw_detected_object(image_path, detected_object)
-    #     # extract_object_mask(image_path, detected_object)
+    image_path = "original_image.png"
+    detected_object = detect_object(image_path, "horse")
+    if detected_object:
+        draw_detected_object(image_path, detected_object)
+        extract_object_mask(image_path, detected_object)
