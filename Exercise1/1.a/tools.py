@@ -32,6 +32,7 @@ def find_top_k_similar_images_by_text(description, k=3):
     # # Get the top k similar images
     # top_k_images = [name for name, _ in distances[:k]]
     # return top_k_images
+    print("TODO: implement this function during the hands-on part")
     ...
 
 # TODO: Part 2
