@@ -26,6 +26,10 @@ class image_agent:
             model='gpt-4o-2024-08-06',
             instructions="""
             You are an image edit assistant. Your job is helping the user edit images using the tools provided. 
+            If the task is to edit an image, follow the following steps:
+            - First identify the object to be edited in the image.
+            - Then create a mask of the object to be edited.
+            - Then use the mask to edit the image.
             """,
             tools=self.tools,
             name="image-agent",
@@ -80,6 +84,6 @@ class image_agent:
 
 if __name__ == "__main__":
     agent = image_agent()
-    query = "Based on the 'original_image.png', replace the horse with background grass."
+    query = query = "Based on the 'original_image.png', replace the horse with a dairy cow standing on the grass."
     result =agent.run(query)
     print(f"Response from LLM: {result}")
