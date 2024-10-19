@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-dataset_dir = "dataset"
+dataset_dir = "../../dataset"
 
 def find_top_k_similar_images_by_text(description, k=3):
     # model = SentenceTransformer('clip-ViT-B-32')
