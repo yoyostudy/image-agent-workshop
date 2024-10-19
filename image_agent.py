@@ -12,6 +12,7 @@ class image_agent:
 
         self.tools = []
         self.tools.append(generate_json_schema(self.create_image_mask_file_by_description))
+        # TODO: add image edit tool
 
 
     def create_image_mask_file_by_description(self, image_path, description):
@@ -21,6 +22,7 @@ class image_agent:
         return None
 
     def run(self, query: str):
+        # TODO: add instructions for image editing. Like 1... 2... 3...
         assistant = self.client.beta.assistants.create(
             model='gpt-4o-2024-08-06',
             instructions="""
@@ -60,6 +62,7 @@ class image_agent:
                     if tool.function.name == "create_image_mask_file_by_description":
                         func_output = self.create_image_mask_file_by_description(**json.loads(tool.function.arguments))
                         func_tool_outputs.append({"tool_call_id": tool.id, "output": func_output})
+                    # TODO: call edit image tool here
                     else:
                         raise Exception("Function not available")
 
