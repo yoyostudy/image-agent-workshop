@@ -169,11 +169,6 @@ def extract_object_mask(image_path, detected_object):
     mask_image.save(output_file)
     return output_file
 
-def make_square_image(image_path):
-    image = Image.open(f"{dataset_dir}/{image_path}")
-    image = image.crop((0, 0, 512, 512))
-    image.save(f"square_image.png")
-
 def edit_image( original_image_path, mask_image_path, description):
     """
     Edit an image using OpenAI's DALL-E 2 model.
