@@ -12,59 +12,31 @@ import os
 load_dotenv()
 dataset_dir = "dataset"
 
-# TODO: Part 1
 def find_top_k_similar_images_by_text(description, k=3):
-    model = SentenceTransformer('clip-ViT-B-32')
-    text_embedding = model.encode(description)
-    distances = []
+    # model = SentenceTransformer('clip-ViT-B-32')
+    # text_embedding = model.encode(description)
+    # distances = []
 
-    model = SentenceTransformer('clip-ViT-B-32')
+    # model = SentenceTransformer('clip-ViT-B-32')
 
-    for image_name in os.listdir(dataset_dir):
-        image_path = os.path.join(dataset_dir, image_name)
-        image = Image.open(image_path)
-        image_embedding = model.encode(image)
-        similarity = spatial.distance.euclidean(text_embedding, image_embedding)
-        distances.append((image_path, similarity))
+    # for image_name in os.listdir(dataset_dir):
+    #     image_path = os.path.join(dataset_dir, image_name)
+    #     image = Image.open(image_path)
+    #     image_embedding = model.encode(image)
+    #     similarity = spatial.distance.euclidean(text_embedding, image_embedding)
+    #     distances.append((image_path, similarity))
 
-    # Sort by similarity in descending order
-    distances.sort(key=lambda x: x[1])
+    # # Sort by similarity in descending order
+    # distances.sort(key=lambda x: x[1])
 
-    # Get the top k similar images
-    top_k_images = [name for name, _ in distances[:k]]
-    return top_k_images
+    # # Get the top k similar images
+    # top_k_images = [name for name, _ in distances[:k]]
+    # return top_k_images
+    ...
 
 # TODO: Part 2
 def classify_animal(image_path, labels):
-    """
-    Classify the animal in the given image.
-
-    This function uses a pre-trained CLIP model to classify the animal in the image
-    from a predefined set of labels: cow, horse, sheep, chicken, goat, and pig.
-
-    Args:
-        image_path (str): The path to the image file to be classified.
-
-    Returns:
-        str: The label of the animal with the highest similarity to the image.
-
-    Note:
-        This function assumes that the image contains one of the predefined animals.
-        It may not perform well on images with other animals or non-animal subjects.
-    """
-    model = SentenceTransformer('clip-ViT-B-32')
-
-    image = Image.open(f"{image_path}")
-    image_embedding = model.encode(image)
-    
-    distances = []
-    for label in labels:
-        text_embedding = model.encode(label)
-        distance = spatial.distance.euclidean(text_embedding, image_embedding)
-        distances.append((label, distance))
-    
-    sorted_distances = sorted(distances, key=lambda x: x[1])
-    return sorted_distances[0][0]  # Return the file name with the smallest distance
+    ...
 
 
 def detect_object(image_path, description):

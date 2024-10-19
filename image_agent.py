@@ -11,7 +11,6 @@ class image_agent:
         self.client = openai.OpenAI()
 
         self.tools = []
-        self.tools.append(generate_json_schema(edit_image))
         self.tools.append(generate_json_schema(self.create_image_mask_file_by_description))
 
 
@@ -26,10 +25,6 @@ class image_agent:
             model='gpt-4o-2024-08-06',
             instructions="""
             You are an image edit assistant. Your job is helping the user edit images using the tools provided. 
-            If the task is to edit an image, follow the following steps:
-            - First identify the object to be edited in the image.
-            - Then create a mask of the object to be edited.
-            - Then use the mask to edit the image.
             """,
             tools=self.tools,
             name="image-agent",
@@ -62,10 +57,7 @@ class image_agent:
                 for tool in run.required_action.submit_tool_outputs.tool_calls:
                     print(f"Calling Function: {tool.function.name}")
                     print(tool.function.arguments)
-                    if tool.function.name == "edit_image":
-                        func_output = edit_image(**json.loads(tool.function.arguments))
-                        func_tool_outputs.append({"tool_call_id": tool.id, "output": func_output})
-                    elif tool.function.name == "create_image_mask_file_by_description":
+                    if tool.function.name == "create_image_mask_file_by_description":
                         func_output = self.create_image_mask_file_by_description(**json.loads(tool.function.arguments))
                         func_tool_outputs.append({"tool_call_id": tool.id, "output": func_output})
                     else:
