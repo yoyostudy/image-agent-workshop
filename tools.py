@@ -7,10 +7,34 @@ from io import BytesIO
 import base64
 import openai
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 dataset_dir = "dataset"
 
+# TODO: Part 1
+def find_top_k_similar_images_by_text(description, k=3):
+    model = SentenceTransformer('clip-ViT-B-32')
+    text_embedding = model.encode(description)
+    distances = []
+
+    model = SentenceTransformer('clip-ViT-B-32')
+
+    for image_name in os.listdir(dataset_dir):
+        image_path = os.path.join(dataset_dir, image_name)
+        image = Image.open(image_path)
+        image_embedding = model.encode(image)
+        similarity = spatial.distance.euclidean(text_embedding, image_embedding)
+        distances.append((image_path, similarity))
+
+    # Sort by similarity in descending order
+    distances.sort(key=lambda x: x[1])
+
+    # Get the top k similar images
+    top_k_images = [name for name, _ in distances[:k]]
+    return top_k_images
+
+# TODO: Part 2
 def classify_animal(image_path, labels):
     """
     Classify the animal in the given image.
@@ -192,12 +216,19 @@ def edit_image( original_image_path, mask_image_path, description):
 
 if __name__ == "__main__":
 
-    labels = ["cow", "horse", "sheep", "chicken", "goat", "pig"]
-    animal_label = classify_animal("original_image.png", labels)
-    print(animal_label)
+    # Part 1: Find top k similar images by text
+    top_k_images = find_top_k_similar_images_by_text("a cat reading a book", k=1)
+    print(top_k_images)
 
-    image_path = "original_image.png"
-    detected_object = detect_object(image_path, "horse")
-    if detected_object:
-        draw_detected_object(image_path, detected_object)
-        # extract_object_mask(image_path, detected_object)
+    # Part 2: Classify animal
+
+    # labels = ["cow", "horse", "sheep", "chicken", "goat", "pig"]
+    # animal_label = classify_animal("original_image.png", labels)
+    # print(animal_label)
+
+    # Part 3: Detect object (demo)
+    # image_path = "original_image.png"
+    # detected_object = detect_object(image_path, "horse")
+    # if detected_object:
+    #     draw_detected_object(image_path, detected_object)
+    #     # extract_object_mask(image_path, detected_object)
