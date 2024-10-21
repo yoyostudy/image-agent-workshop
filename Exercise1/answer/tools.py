@@ -212,14 +212,14 @@ def edit_image( original_image_path, mask_image_path, description):
 if __name__ == "__main__":
 
     # Part 1: Find top k similar images by text
-    top_k_images = find_top_k_similar_images_by_text("a cat reading a book", k=1)
-    print(top_k_images)
+    # top_k_images = find_top_k_similar_images_by_text("a cat reading a book", k=1)
+    # print(top_k_images)
 
     # Part 2: Classify animal
 
-    # labels = ["cow", "horse", "sheep", "chicken", "goat", "pig"]
-    # animal_label = classify_animal("original_image.png", labels)
-    # print(animal_label)
+    labels = ["cow", "horse", "sheep", "chicken", "goat", "pig"]
+    animal_label = classify_animal("original_image.png", labels)
+    print(animal_label)
 
     # Part 3: Detect object (demo)
     # image_path = "original_image.png"
