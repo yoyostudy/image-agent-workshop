@@ -1,7 +1,8 @@
-# AI Agent Workshop
+# Image Editing Agent Workshop
 
-## Overview
-Welcome to our AI agent Workshop! This repository contains all the materials and code you'll need for the hands-on part of this workshop. In this workshop, you'll learn how to design an image editing agent does in-painting, based on natural language instructions.
+![Replace the horse by a cow](teaser.png)
+
+Welcome to our AI agent Workshop! We'll go through the process of designing an image editing agent that can replace a horse by a cow based on natural language instructions.
 
 ## Prerequisites
 - Python 3.10+
