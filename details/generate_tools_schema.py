@@ -6,6 +6,7 @@ import warnings
 
 # Notice: This file is originally from Google vertexai library _function_calling_utils.py
 # It's modified to suite the API requirements of OpenAI
+# Reference: https://github.com/googleapis/python-aiplatform/blob/00d93bd24ed0e2b1105f4e232d0a0f45fc0a3986/vertexai/generative_models/_function_calling_utils.py#L4
 
 Struct = Dict[str, Any]
 
